@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: :index
   def index
     @article = "表示される内容が変わります"
   end
