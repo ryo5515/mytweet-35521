@@ -5,8 +5,9 @@ document.addEventListener("turbolinks:load", function(){
       $.ajax({
         url: $(this).attr("action"),
         type: "get"
-      }).done(function(){
+      }).done(function(json){
         $(".active").css("font-weight", "bold");
+        $(`#article${json.article}`).text(`いいね！${json.like}`);
       })
     })
   })
