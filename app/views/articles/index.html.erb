@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
   <%= "#{current_user.account_name}さんでログイン中" %>
+  <br>
   <%= link_to new_article_path do %>
     <%= "ツイート作成ページへ" %>
   <% end %>
@@ -8,7 +9,7 @@
     <%= "ログアウト" %>
   <% end %>
 <% else %>
-  <%= "ログインしていません" %>
+  <%= "ようこそ" %>
   <br>
   <%= link_to new_user_registration_path do %>
     <%= "ユーザー登録ページへ" %>
