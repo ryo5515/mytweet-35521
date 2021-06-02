@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
   def index
-    @article = "これは表示される内容です"
+    @article = "表示される内容が変わります"
   end
 end
