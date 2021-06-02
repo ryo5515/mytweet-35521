@@ -20,10 +20,10 @@
   <% end %>
 <% end %>
 
-<div class="title">
-  <% Article.all.each do |article| %>
+<% Article.all.each do |article| %>
+  <div class="title">
     <%= "#{article.user.account_name}(#{article.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M:%S")})：" %>
     <%= article.tweet %>
     <br>
-  <% end %>
-</div>
+  </div>
+<% end %>
