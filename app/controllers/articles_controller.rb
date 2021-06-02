@@ -20,6 +20,6 @@ class ArticlesController < ApplicationController
   private
 
   def set_params
-    params[:article].permit(:tweet)
+    params[:article].permit(:tweet).merge(user_id: current_user.id)
   end
 end
