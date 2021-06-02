@@ -1,24 +1,10 @@
-<div class="title">Hello, World!</div>
-
-①↓これはバグります
-<div class="title"><%= Article.all %></div>
-
-②↓これもバグります
-<div class="title"><%= Article.find(1) %></div>
-
-③↓これは表示できます
-<div class="title"><%= Article.find(1).tweet %></div>
-
-④↓これはバグります
-<div class="title">
-  <% Article.all.each do |article| %>
-    <%= article %>
-  <% end %>
-</div>
-
-⑤↓これは表示できます
 <div class="title">
   <% Article.all.each do |article| %>
     <%= article.tweet %>
+    <br>
   <% end %>
 </div>
+
+<%= link_to new_article_path do %>
+  <%= "ツイート作成ページへ" %>
+<% end %>
