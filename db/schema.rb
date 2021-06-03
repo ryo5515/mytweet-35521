@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_030054) do
+ActiveRecord::Schema.define(version: 2021_06_03_050303) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tweet", null: false
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 2021_06_03_030054) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "notifying_id"
+    t.bigint "notified_by_id"
+    t.bigint "article_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_notifications_on_article_id"
+    t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id"
+    t.index ["notifying_id"], name: "index_notifications_on_notifying_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "account_id"
     t.string "account_name"
@@ -57,4 +68,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_030054) do
   add_foreign_key "follows", "users", column: "following_id"
   add_foreign_key "likes", "articles"
   add_foreign_key "likes", "users"
+  add_foreign_key "notifications", "articles"
+  add_foreign_key "notifications", "users", column: "notified_by_id"
+  add_foreign_key "notifications", "users", column: "notifying_id"
 end
