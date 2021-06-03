@@ -54,14 +54,5 @@
     <% end %>
   <% end %>
   <br>
-  通知
-  <% Notification.where(notifying_id: current_user.id).each do |notification| %>
-      <div class="title">
-        <% if notification.article_id != nil %>
-          <%= User.find(notification.notified_by_id).account_name %>さんがあなたのツイートにいいねしました:<%= Article.find(notification.article_id).tweet %>
-        <% else %>
-          <%= User.find(notification.notified_by_id).account_name %>さんがあなたをフォローしました
-        <% end %>
-      </div>
-  <% end %>
+  <%= link_to "通知", notification_articles_path %>
 <% end %>
