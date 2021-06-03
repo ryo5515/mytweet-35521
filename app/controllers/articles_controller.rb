@@ -23,9 +23,11 @@ class ArticlesController < ApplicationController
   def create_like
     if user_signed_in? && @article.user_id != current_user.id && @article.likes.find_by(user_id: current_user.id) == nil
       Like.create(user_id: current_user.id, article_id: @article.id)
+      Notification.create(notifying_id: @article.user_id, notified_by_id: current_user.id, article_id: @article.id)
       @like = "like"
     elsif user_signed_in? && @article.user_id != current_user.id && @article.likes.find_by(user_id: current_user.id) != nil
       Like.find_by(user_id: current_user.id, article_id: @article.id).destroy
+      Notification.find_by(notifying_id: @article.user_id, notified_by_id: current_user.id, article_id: @article.id).destroy
       @like = "unlike"
     end
   end
